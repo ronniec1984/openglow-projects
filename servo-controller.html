@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ESP32 Neon Servo Controller | Open Glow</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Open Glow Projects</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="projects.html" style="color:#00ff88;">Projects</a>
+        <a href="tools.html">Tools</a>
+        <a href="downloads.html">Downloads</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>ESP32 Neon Servo Controller</h1>
+    <p>Control a servo motor using a glowing web interface.</p>
+</section>
+
+<section style="padding:40px; max-width:900px; margin:auto;">
+
+    <h2>Overview</h2>
+    <p>
+        This project uses an ESP32 to control a servo motor through a neon‑themed web interface.
+        The ESP32 hosts a local webpage with a glowing slider that updates the servo position in real time.
+    </p>
+
+    <h2>Parts Needed</h2>
+    <ul>
+        <li>ESP32 Dev Board</li>
+        <li>SG90 or MG996R Servo</li>
+        <li>5V Power Source</li>
+        <li>Jumper Wires</li>
+    </ul>
+
+    <h2>Wiring Diagram</h2>
+    <p>(Upload image later to assets/img/servo.png)</p>
+
+    <h2>Code</h2>
+    <pre>
+// ESP32 Neon Servo Controller
+#include <WiFi.h>
+#include <WebServer.h>
+#include <ESP32Servo.h>
+
+Servo servo;
+WebServer server(80);
+
+const char* ssid = "ESP32-Servo";
+const char* password = "12345678";
+
+String htmlPage = R"rawliteral(
+<!DOCTYPE html>
+<html>
+<head>
+<title>Neon Servo Controller</title>
+<style>
+body { background:#05050a; color:#00eaff; font-family:Arial; text-align:center; }
+input[type=range] { width:80%; }
+</style>
+</head>
+<body>
+<h1>Neon Servo Controller</h1>
+<input type="range" min="0" max="180" value="90" id="slider" oninput="updateServo(this.value)">
+<script>
+function updateServo(val){
+  fetch('/set?value=' + val);
+}
+</script>
+</body>
+</html>
+)rawliteral";
+
+void handleRoot() {
+  server.send(200, "text/html", htmlPage);
+}
+
+void handleSet() {
+  if (server.hasArg("value")) {
+    int pos = server.arg("value").toInt();
+    servo.write(pos);
+  }
+  server.send(200, "text/plain", "OK");
+}
+
+void setup() {
+  servo.attach(13);
+  WiFi.softAP(ssid, password);
+  server.on("/", handleRoot);
+  server.on("/set", handleSet);
+  server.begin();
+}
+
+void loop() {
+  server.handleClient();
+}
+    </pre>
+
+    <h2>Download</h2>
+    <p>(Add downloadable .ino file later)</p>
+
+</section>
+
+<footer>
+    <p>© 2026 Open Glow Projects — Neon Engineering</p>
+</footer>
+
+</body>
+</html>
