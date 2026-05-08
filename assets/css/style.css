@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    background: #05050a;
+    color: #e8faff;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-bottom: 2px solid #00eaff;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(6px);
+}
+
+.logo {
+    font-size: 28px;
+    color: #00eaff;
+    text-shadow: 0 0 10px #00eaff;
+}
+
+nav a {
+    margin-left: 25px;
+    color: #e8faff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #00ff88;
+    text-shadow: 0 0 10px #00ff88;
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 120px 20px;
+    background: linear-gradient(180deg, #0a0a15, #05050a);
+}
+
+.hero h1 {
+    font-size: 60px;
+    color: #00eaff;
+    text-shadow: 0 0 20px #00eaff;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-top: 10px;
+    color: #e8faff;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 30px;
+    background: #00eaff;
+    color: #05050a;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 0 15px #00eaff;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #00ff88;
+    box-shadow: 0 0 20px #00ff88;
+}
+
+/* Cards */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    padding: 40px;
+}
+
+.card {
+    background: #0a0a15;
+    border: 2px solid #00eaff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 234, 255, 0.2);
+    transition: 0.3s;
+}
+
+.card:hover {
+    border-color: #00ff88;
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
+}
+
+.btn-small {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 20px;
+    background: #00eaff;
+    color: #05050a;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.btn-small:hover {
+    background: #00ff88;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 2px solid #00eaff;
+    margin-top: 40px;
+}
